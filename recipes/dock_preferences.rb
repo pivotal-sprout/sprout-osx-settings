@@ -44,6 +44,7 @@ end
 
 execute 'relaunch dock' do
   command 'killall Dock'
+  ignore_failure true
   only_if { !prefs.empty? }
 end
 
