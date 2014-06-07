@@ -14,7 +14,7 @@ Various settings & preferences for OS X.
 
 ### Attributes
 
-*NOTE:* All preferences are namespaced under `sprout-osx-settings` they include:
+*NOTE:* All preferences are namespaced under `[sprout][osx-settings]` they include:
 
 - TODO
 
