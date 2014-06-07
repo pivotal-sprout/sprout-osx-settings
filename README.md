@@ -16,7 +16,7 @@ Various settings & preferences for OS X.
 
 *NOTE:* All preferences are namespaced under `sprout-osx-settings` they include:
 
-* `path` &mdash; The path to the file that exemplar touches; default is `~/exemplar`
+- TODO
 
 ### Recipes
 
