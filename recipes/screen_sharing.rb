@@ -2,8 +2,9 @@ ruby_block "Copy Screen Sharing to /Applications" do
   block do
     FileUtils.cp_r("/System/Library/CoreServices/Screen\ Sharing.app","/Applications/", preserve: true)
   end
-  not_if do
-    File.exists?("/Applications/Screen Sharing.app")
+  only_if do
+    File.exists?("/System/Library/CoreServices/Screen\ Sharing.app") &&
+      !File.exists?("/Applications/Screen Sharing.app")
   end
 end
 
