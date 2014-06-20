@@ -52,7 +52,6 @@ Various settings & preferences for OS X.
 - `sprout-osx-settings::input_on_login`
 - `sprout-osx-settings::inputrc`
 - `sprout-osx-settings::keyboard`
-- `sprout-osx-settings::keycastr_preferences`
 - `sprout-osx-settings::locate`
 - `sprout-osx-settings::machine_name` - sets machine name based on `node[machine_domain]`
 - `sprout-osx-settings::menubar` - turns off transparency in menubar
