@@ -1,19 +1,22 @@
 screen_sharing_app = "Screen\ Sharing.app"
-screen_sharing_dir = "/System/Library/CoreServices"
+screen_sharing_dir = if node["platform_version"] =~ /10\.9/
+  "/System/Library/CoreServices"
+else # assume Yosemite/10.10
+  "/System/Library/CoreServices/Applications"
+end
+
+src = File.join(screen_sharing_dir, screen_sharing_app)
 
 ruby_block "Copy Screen Sharing to /Applications" do
   block do
-    FileUtils.cp_r(File.join(screen_sharing_dir, screen_sharing_app), "/Applications/", preserve: true)
+    FileUtils.cp_r(src, "/Applications/", preserve: true)
   end
-  only_if do
-    File.exists?(File.join(screen_sharing_dir, screen_sharing_app)) && !File.exists?(File.join("/Applications", screen_sharing_app))
-  end
+  only_if { File.exists?(src) && !File.exists?(File.join("/Applications", screen_sharing_app)) }
 end
 
-ruby_block "assure that /Applications/Screen Sharing.app was successfully created" do
+ruby_block "ensure /Applications/Screen Sharing.app exists" do
   block do
-    raise "Copying /Applications/Screen Sharing.app to /System/Library/CoreServices/Screen Sharing.app failed." unless File.exists?("/Applications/Screen Sharing.app")
+    raise "Copying to '/Applications/Screen Sharing.app' from '#{src}' failed."
   end
-  only_if { File.exists?(File.join(screen_sharing_dir, screen_sharing_app)) }
+  not_if { File.exists?(File.join("/Applications", screen_sharing_app)) }
 end
-
