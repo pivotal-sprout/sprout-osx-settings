@@ -43,7 +43,6 @@ Various settings & preferences for OS X.
 #### All Recipes
 
 - `sprout-osx-settings::defaults_fast_key_repeat_rate`
-- `sprout-osx-settings::disable_front_row`
 - `sprout-osx-settings::dock_preferences`
 - `sprout-osx-settings::enable_assistive_devices`
 - `sprout-osx-settings::finder_display_full_path`
