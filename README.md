@@ -29,7 +29,6 @@ Various settings & preferences for OS X.
     - `sprout-osx-settings::keyboard`
     - `sprout-osx-settings::locate`
     - `sprout-osx-settings::machine_name`
-    - `sprout-osx-settings::menubar`
     - `sprout-osx-settings::screensaver`
     - `sprout-osx-settings::screen_sharing`
     - `sprout-osx-settings::set_menubar_clock_format`
@@ -53,7 +52,6 @@ Various settings & preferences for OS X.
 - `sprout-osx-settings::keyboard`
 - `sprout-osx-settings::locate`
 - `sprout-osx-settings::machine_name` - sets machine name based on `node[machine_domain]`
-- `sprout-osx-settings::menubar` - turns off transparency in menubar
 - `sprout-osx-settings::osx_aqua_color_preferences`
 - `sprout-osx-settings::osx_disable_natural_scrolling`
 - `sprout-osx-settings::remove_expose_keyboard_shortcuts`
