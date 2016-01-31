@@ -1,13 +1,13 @@
 osx_defaults "ask for password when screen is locked" do
   domain 'com.apple.screensaver'
   key 'askForPassword'
-  integer 1
+  integer ( node['sprout']['screensaver']['ask_for_password'] ? 1 : 0 )
 end
 
-osx_defaults "wait 60 seconds between screensaver & lock" do
+osx_defaults "wait #{node['sprout']['screensaver']['ask_for_password_delay']} seconds between screensaver & lock" do
   domain 'com.apple.screensaver'
   key 'askForPasswordDelay'
-  float 60
+  float node['sprout']['screensaver']['ask_for_password_delay']
 end
 
 plist_dir = "#{node['sprout']['home']}/Library/Preferences/ByHost"
@@ -19,10 +19,10 @@ domains.each do |domain|
   osx_defaults "set screensaver timeout" do
     domain domain
     key 'idleTime'
-    integer 600
+    integer node['sprout']['screensaver']['timeout']
   end
 end
 
 execute "set display, disk and computer sleep times" do
-  command "pmset -a displaysleep 20 disksleep 15 sleep 0"
+  command "pmset -a displaysleep #{node['sprout']['screensaver']['displaysleep']} disksleep #{node['sprout']['screensaver']['disksleep']} sleep #{node['sprout']['screensaver']['sleep']}"
 end
