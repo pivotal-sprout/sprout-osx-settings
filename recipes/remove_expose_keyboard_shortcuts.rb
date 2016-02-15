@@ -1,5 +1,3 @@
-include_recipe "sprout-osx-settings::enable_assistive_devices"
-
 ruby_block "Remove Expose Keyboard Shortcuts" do
   block do
     system(
