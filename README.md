@@ -12,12 +12,6 @@ Various settings & preferences for OS X.
 
 ## Cookbook Usage
 
-### Attributes
-
-*NOTE:* All preferences are namespaced under `[sprout][osx-settings]` they include:
-
-- TODO
-
 ### Recipes
 
 - `sprout-osx-settings::default` - includes the following:
@@ -82,16 +76,7 @@ bundle
 bundle exec rake
 ```
 
-The default rake task includes rubocop
-- `sprout-osx-settings::foodcritic`
-- `sprout-osx-settings::unit specs`
-
-### [Rubocop](https://github.com/bbatsov/rubocop)
-
-```
-bundle
-bundle exec rake rubocop
-```
+The default rake task runs foodcritic and unit specs
 
 ### [FoodCritic](http://acrmp.github.io/foodcritic/)
 
