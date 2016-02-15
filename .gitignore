@@ -1,4 +1,5 @@
 Cheffile.lock
+Gemfile.lock
 tmp/
 cookbooks/
 .idea/
