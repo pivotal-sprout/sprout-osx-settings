@@ -1,6 +1,8 @@
 name             'sprout-osx-settings'
 maintainer       'Pivotal Labs'
 maintainer_email 'sprout-maintainers@googlegroups.com'
+source_url       'https://github.com/pivotal-sprout/sprout-osx-settings'
+issues_url       'https://github.com/pivotal-sprout/sprout-osx-settings/issues'
 license          'MIT'
 description      'Recipes to configure various aspects of OS X'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
