@@ -1,11 +1,12 @@
 require 'rake'
 require 'rspec/core/rake_task'
+require 'foodcritic'
 
 task default: %w(foodcritic spec:unit)
 
 desc 'Run foodcritic'
-task :foodcritic do
-  sh 'foodcritic . -f any -f ~FC014 -f ~FC048'
+FoodCritic::Rake::LintTask.new do |t|
+  t.options[:fail_tags] = ['any', '~FC014', '~FC048']
 end
 
 namespace :spec do
