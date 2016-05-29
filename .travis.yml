@@ -2,8 +2,8 @@ language: objective-c
 rvm: system
 install:
   - travis_wait sudo softwareupdate -a -i
-  - sudo gem install bundler --no-ri --no-rdoc
-  - sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future bundle install
+  - sudo gem install bundler --no-document -n/usr/local/bin
+  - bundle install --binstubs=$HOME/bin
 script:
   - bundle exec rake
   - bundle exec soloist
