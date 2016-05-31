@@ -1,0 +1,14 @@
+AllCops:
+  Include:
+    - Cheffile
+    - Gemfile
+    - Rakefile
+  Exclude:
+   - cookbooks/**/*
+   - tmp/**/*
+
+Style/SpaceBeforeFirstArg:
+  Enabled: false # Useful for more readable alignment of method call args
+
+LineLength:
+  Max: 120
