@@ -1,19 +1,17 @@
-require 'mixlib/shellout'
-
 def hostname
-  cmd = Mixlib::ShellOut('hostname')
+  cmd = Mixlib::ShellOut.new('hostname')
   cmd.run_command
   cmd.stdout.chomp
 end
 
 def real_interfaces
-  cmd = Mixlib::ShellOut('netstat -ni')
+  cmd = Mixlib::ShellOut.new('netstat -ni')
   cmd.run_command
   cmd.stdout.split("\n").select { |line| line.match(/en.*((\d+\.){3}\d+)/) }
 end
 
 def computer_name
-  cmd = Mixlib::ShellOut('scutil --get ComputerName')
+  cmd = Mixlib::ShellOut.new('scutil --get ComputerName')
   cmd.run_command
   cmd.stdout.chomp
 end
