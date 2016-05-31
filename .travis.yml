@@ -1,9 +1,12 @@
 language: objective-c
 rvm: system
 install:
-  - travis_wait sudo softwareupdate -a -i
-  - sudo gem install bundler --no-document -n/usr/local/bin
-  - bundle install --binstubs=$HOME/bin
+  - travis_wait 30 sudo softwareupdate -a -i
+
+  - export GEM_HOME=tmp/ruby/2.0.0/
+  - export GEM_PATH=tmp/ruby/2.0.0/
+  - export PATH=${GEM_HOME}/bin:${PATH}
+  - gem install bundler --no-document
+  - bundle install
 script:
-  - bundle exec rake
-  - bundle exec soloist
+  - bundle exec rake ci
