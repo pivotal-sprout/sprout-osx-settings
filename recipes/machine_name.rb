@@ -26,7 +26,7 @@ host_ips.each do |ip|
   end
 end
 
-hostnames.each do |hostname|
+hostnames.uniq.each do |hostname|
   log "My hostname: #{hostname}"
   next unless hostname =~ /#{node['machine_domain']}/ && hostname !~ /^dyn-/
   hostname = hostname.gsub(/\..*/, '')
