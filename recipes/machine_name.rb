@@ -42,7 +42,7 @@ hostnames.each do |hostname|
     execute host_cmd
   end
 
-  ruby_block 'test to see if hostname was set' do
+  ruby_block "test to see if hostname (#{hostname}) was set" do
     block do
       cmd = Mixlib::ShellOut.new('scutil --get ComputerName')
       cmd.run_command
