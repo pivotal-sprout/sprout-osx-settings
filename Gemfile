@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'soloist',    require: false
+gem 'soloist', require: false
 
 group :development do
   gem 'foodcritic', require: false

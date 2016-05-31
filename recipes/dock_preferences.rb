@@ -47,4 +47,3 @@ execute 'relaunch dock' do
   ignore_failure true
   only_if { !prefs.empty? }
 end
-

@@ -1,6 +1,6 @@
-start_after_restore="true"
-plist_key=":Custom\\ Profile:AC\\ Power:Automatic\\ Restart\\ On\\ Power\\ Loss"
-plist_file="/Library/Preferences/SystemConfiguration/com.apple.PowerManagement.plist"
+start_after_restore = 'true'
+plist_key = ':Custom\\ Profile:AC\\ Power:Automatic\\ Restart\\ On\\ Power\\ Loss'
+plist_file = '/Library/Preferences/SystemConfiguration/com.apple.PowerManagement.plist'
 
 # We must delete & re-create the key to accommodate Apple 10.8.2 weirdness:
 # On an un-configured system, the key "Automatic Restart on Power Loss"
@@ -17,6 +17,6 @@ execute "Add #{plist_key} to #{plist_file}" do
   command "/usr/libexec/PlistBuddy -c 'Add #{plist_key} bool #{start_after_restore}' #{plist_file}"
 end
 
-execute "Restart powerd" do
-  command "killall powerd"
+execute 'Restart powerd' do
+  command 'killall powerd'
 end

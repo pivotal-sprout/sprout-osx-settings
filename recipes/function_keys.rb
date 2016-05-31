@@ -1,8 +1,8 @@
-as_fn_keys = node['function_keys']['use_function_keys_as_function_keys'] ? "0" : "1"
+as_fn_keys = node['function_keys']['use_function_keys_as_function_keys'] ? '0' : '1'
 
 # The following won't take effect until the person logs out & logs back in again.
 # THE BELT
-osx_defaults "Turn #{as_fn_keys == "0" ? "on" : "off" } function-keys-work-as-function keys" do
+osx_defaults "Turn #{as_fn_keys == '0' ? 'on' : 'off'} function-keys-work-as-function keys" do
   domain "/Users/#{node['sprout']['user']}/Library/Preferences/.GlobalPreferences"
   key 'com.apple.keyboard.fnState'
   boolean node['function_keys']['use_function_keys_as_function_keys']
@@ -10,10 +10,10 @@ end
 
 # Attempt an interactive change.  Two req'ts: 1) user must be logged in 2) assistive devices enabled
 # THE SUSPENDERS
-ruby_block "Fix Function Keys" do
+ruby_block 'Fix Function Keys' do
   block do
     def are_we_logged_in?
-      system("ps aux | grep SystemUI | grep -v grep")
+      system('ps aux | grep SystemUI | grep -v grep')
     end
 
     def are_assistive_devices_enabled?
@@ -29,7 +29,8 @@ ruby_block "Fix Function Keys" do
     end
 
     # check if we are logged into the console
-    if  are_we_logged_in? &&  are_assistive_devices_enabled?
+    if are_we_logged_in? && are_assistive_devices_enabled?
+      # rubocop:disable LineLength
       system("osascript -e '
         tell application \"System Preferences\"
           set current pane to pane \"com.apple.preference.keyboard\"
@@ -43,6 +44,7 @@ ruby_block "Fix Function Keys" do
           end tell
           quit application \"System Preferences\"
         end tell'")
+      # rubocop:enable LineLength
     end
   end
 end
