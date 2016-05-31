@@ -1,3 +1,5 @@
+require 'mixlib/shellout'
+
 def hostname
   cmd = Mixlib::ShellOut('hostname')
   cmd.run_command
