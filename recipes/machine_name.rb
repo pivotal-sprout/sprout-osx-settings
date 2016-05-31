@@ -10,12 +10,6 @@ def real_interfaces
   cmd.stdout.split("\n").select { |line| line.match(/en.*((\d+\.){3}\d+)/) }
 end
 
-def computer_name
-  cmd = Mixlib::ShellOut.new('scutil --get ComputerName')
-  cmd.run_command
-  cmd.stdout.chomp
-end
-
 hostnames = [hostname]
 
 require 'socket'
@@ -50,6 +44,10 @@ hostnames.each do |hostname|
 
   ruby_block 'test to see if hostname was set' do
     block do
+      cmd = Mixlib::ShellOut.new('scutil --get ComputerName')
+      cmd.run_command
+      computer_name = cmd.stdout.chomp
+
       raise 'Setting of hostname failed' unless hostname == computer_name
     end
   end
