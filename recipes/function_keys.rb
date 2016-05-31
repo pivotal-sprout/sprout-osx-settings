@@ -18,6 +18,7 @@ ruby_block 'Fix Function Keys' do # ~FC014
       !cmd.error?
     end
 
+    # rubocop:disable Metrics/MethodLength
     def are_assistive_devices_enabled?
       cmd = Milib::ShellOut.new("osascript -e '
         tell application \"System Events\"
@@ -31,6 +32,7 @@ ruby_block 'Fix Function Keys' do # ~FC014
       cmd.run_command
       !cmd.error?
     end
+    # rubocop:enable Metrics/MethodLength
 
     # check if we are logged into the console
     if are_we_logged_in? && are_assistive_devices_enabled?

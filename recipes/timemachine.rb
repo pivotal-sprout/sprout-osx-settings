@@ -4,7 +4,8 @@ osx_defaults 'TimeMachine should NOT ask to use every new disk' do
   boolean true
 end
 
-old_menu_extras_cmd = Mixlib::ShellOut('sudo -u #{node['sprout']['user']} defaults read com.apple.systemuiserver menuExtras')
+read_cmd = "sudo -u #{node['sprout']['user']} defaults read com.apple.systemuiserver menuExtras"
+old_menu_extras_cmd = Mixlib::ShellOut(read_cmd)
 old_menu_extras_cmd.run_command
 old_menu_extras = old_menu_extras_cmd.stdout
 
