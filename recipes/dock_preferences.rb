@@ -21,14 +21,14 @@ osx_defaults 'remove persistent apps from the dock' do
   only_if { prefs['clear_apps'] }
 end
 
-osx_defaults "adjusts dock size to #{prefs['tile_size']}" do
+osx_defaults "adjusts dock size to `tile_size`: #{prefs['tile_size']}" do
   domain 'com.apple.dock'
   key 'tilesize'
   integer prefs['tile_size']
   only_if { prefs['tile_size'] }
 end
 
-osx_defaults "adjusts dock size to #{prefs['largesize']}" do
+osx_defaults "adjusts dock size to `largesize`: #{prefs['largesize']}" do
   domain 'com.apple.dock'
   key 'largesize'
   integer prefs['largesize']
