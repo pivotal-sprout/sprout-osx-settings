@@ -1,7 +1,24 @@
-hostnames = [`hostname`.chop]
+def hostname
+  cmd = Mixlib::ShellOut('hostname')
+  cmd.run_command
+  cmd.stdout.chomp
+end
+
+def real_interfaces
+  cmd = Mixlib::ShellOut('netstat -ni')
+  cmd.run_command
+  cmd.stdout.split("\n").select { |line| line.match(/en.*((\d+\.){3}\d+)/) }
+end
+
+def computer_name
+  cmd = Mixlib::ShellOut('scutil --get ComputerName')
+  cmd.run_command
+  cmd.stdout.chomp
+end
+
+hostnames = [hostname]
 
 require 'socket'
-real_interfaces = `netstat -ni`.split("\n").select { |line| line.match(/en.*((\d+\.){3}\d+)/) }
 host_ips = real_interfaces.collect do |line|
   line =~ /en.*?((\d+\.){3}\d+)/
   Regexp.last_match(1)
@@ -33,7 +50,7 @@ hostnames.each do |hostname|
 
   ruby_block 'test to see if hostname was set' do
     block do
-      raise 'Setting of hostname failed' unless hostname == `scutil --get ComputerName`.chop
+      raise 'Setting of hostname failed' unless hostname == computer_name
     end
   end
 end

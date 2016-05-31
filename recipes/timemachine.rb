@@ -4,7 +4,10 @@ osx_defaults 'TimeMachine should NOT ask to use every new disk' do
   boolean true
 end
 
-old_menu_extras = `sudo -u #{node['sprout']['user']} defaults read com.apple.systemuiserver menuExtras`
+old_menu_extras_cmd = Mixlib::ShellOut('sudo -u #{node['sprout']['user']} defaults read com.apple.systemuiserver menuExtras')
+old_menu_extras_cmd.run_command
+old_menu_extras = old_menu_extras_cmd.stdout
+
 new_menu_extras = old_menu_extras.split("\n").select { |line| line !~ /TimeMachine.menu/ }.join("\n")
 
 execute 'TimeMachine should NOT appear in the status bar' do

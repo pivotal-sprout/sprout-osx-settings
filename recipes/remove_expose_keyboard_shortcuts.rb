@@ -1,6 +1,6 @@
-ruby_block 'Remove Expose Keyboard Shortcuts' do
+ruby_block 'Remove Expose Keyboard Shortcuts' do # ~FC014
   block do
-    system(
+    cmd = Mixlib::ShellOut.new(
       "osascript -e '
         tell application \"System Preferences\"
         	set current pane to pane \"com.apple.preference.expose\"
@@ -35,5 +35,6 @@ ruby_block 'Remove Expose Keyboard Shortcuts' do
         	quit application \"System Preferences\"
         end tell'"
     )
+    cmd.run_command
   end
 end

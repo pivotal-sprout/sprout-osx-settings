@@ -10,14 +10,16 @@ end
 
 # Attempt an interactive change.  Two req'ts: 1) user must be logged in 2) assistive devices enabled
 # THE SUSPENDERS
-ruby_block 'Fix Function Keys' do
+ruby_block 'Fix Function Keys' do # ~FC014
   block do
     def are_we_logged_in?
-      system('ps aux | grep SystemUI | grep -v grep')
+      cmd = Mixlib::ShellOut.new('ps aux | grep SystemUI | grep -v grep')
+      cmd.run_command
+      !cmd.error?
     end
 
     def are_assistive_devices_enabled?
-      system("osascript -e '
+      cmd = Milib::ShellOut.new("osascript -e '
         tell application \"System Events\"
          set UI_enabled to UI elements enabled
         end tell
@@ -26,12 +28,14 @@ ruby_block 'Fix Function Keys' do
         else
          return \"access for assistive devices IS enabled!\"
         end if'")
+      cmd.run_command
+      !cmd.error?
     end
 
     # check if we are logged into the console
     if are_we_logged_in? && are_assistive_devices_enabled?
       # rubocop:disable LineLength
-      system("osascript -e '
+      cmd = Mixlib::ShellOut.new("osascript -e '
         tell application \"System Preferences\"
           set current pane to pane \"com.apple.preference.keyboard\"
         end tell
@@ -45,6 +49,7 @@ ruby_block 'Fix Function Keys' do
           quit application \"System Preferences\"
         end tell'")
       # rubocop:enable LineLength
+      cmd.run_command
     end
   end
 end

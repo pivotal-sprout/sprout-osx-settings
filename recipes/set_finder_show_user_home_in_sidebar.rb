@@ -2,7 +2,7 @@ ruby_block 'Show User Home In Sidebar' do
   username = ENV['SUDO_USER']
   block do
     # rubocop:disable LineLength
-    system(
+    cmd = Mixlib::ShellOut.new(
       "osascript -e '
         tell application \"Finder\"
           activate
@@ -15,5 +15,6 @@ ruby_block 'Show User Home In Sidebar' do
         end tell'"
     )
     # rubocop:enable LineLength
+    cmd.run_command
   end
 end
