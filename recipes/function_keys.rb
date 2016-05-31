@@ -20,7 +20,7 @@ ruby_block 'Fix Function Keys' do # ~FC014
 
     # rubocop:disable Metrics/MethodLength
     def are_assistive_devices_enabled?
-      cmd = Milib::ShellOut.new("osascript -e '
+      cmd = Mixlib::ShellOut.new("osascript -e '
         tell application \"System Events\"
          set UI_enabled to UI elements enabled
         end tell
